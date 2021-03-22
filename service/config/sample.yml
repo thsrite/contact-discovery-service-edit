@@ -1,0 +1,58 @@
+#always pick “unlinkable” since it is both easier to get registered and more private for your endusers
+#debug模式
+enclave:
+  spid:       A5AA7138DA25733383679575296B6B4
+  iasSecretKey: 17629060acc1339b4a7f8c891695a4
+  iasHost:     https://api.trustedservices.intel.com/sgx/dev
+  acceptGroupOutOfDate: true
+  instances:
+   - mrenclave: 405282d63e1cdee76a4d48cbe12e5fb0e5829d497bf4937c4c7bec924dae1f5a
+     debug:    true
+
+#生产模式
+#enclave:
+#  spid:       2B85B3941C498C33543EC9F7544EF9B
+#  iasSecretKey: #待申请
+#  iasHost:     https://api.trustedservices.intel.com/sgx
+#  acceptGroupOutOfDate: fasle
+#  instances:
+#   - mrenclave: cd6cfc342937b23b1bdd3bbf9721aa5615ac9ff50a75c5527d441cd3276826c9
+#     debug:    fasle
+
+#Signal-Server
+signal:
+  userToken:   e9cbcd33d99073f48c7acc015f900000  #signal-server userAuthenticationTokenUserIdSecret
+  serverToken:  adbe341ca076657e34e4e29e3bf00000  #signal-server userAuthenticationTokenSharedSecret
+
+#redis sentine
+redis:
+  masterName:   local-master
+  sentinelUrls:
+    - localhost:26379
+    - localhost:26380
+    - localhost:26381
+
+#sqs
+directory:
+  initialSize: 10000000
+  minLoadFactor: 0.75
+  maxLoadFactor: 0.85
+#  sqs:
+#    accessKey:  # Change this to your AWS IAM Access Key
+#    accessSecret:  # Change this to your AWS IAM Secret
+#    queueUrl: https://sqs.cn-north-1.amazonaws.com.cn//signal.fifo # Change this to your AWS SQS (FIFO) URL
+#    queueRegion: eu-west-3
+
+limits:
+  contactQueries:
+    bucketSize:        50000
+    leakRatePerMinute: 50000
+  remoteAttestations:
+    bucketSize:        50000
+    leakRatePerMinute: 50000
+
+#metrics:
+#  reporters:
+#    - type:     json # wavefront metrics reporter
+#      hostname:      # wavefront endpoint hostname
+#      token:         # wavefront endpoint token
